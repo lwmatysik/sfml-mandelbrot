@@ -6,13 +6,13 @@ why:
 
 todo:
 	
-	* prettier color palette
+	*prettier color palette
 	
-	* zoom functionality
+	*zoom functionality
 	
-	* window resize functionality
+	*window resize functionality
 	
-	* keyboard setting for max iterations
+	*keyboard setting for max iterations
 
 to build:
 	
@@ -21,7 +21,7 @@ to build:
 
 requires:
 	
-	* [sfml](http://www.sfml-dev.org/)
+	*[sfml](http://www.sfml-dev.org/)
 	
-	* [openmp](http://openmp.org/wp/)
+	*[openmp](http://openmp.org/wp/)
 	
