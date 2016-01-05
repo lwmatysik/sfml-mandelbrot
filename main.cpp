@@ -28,9 +28,9 @@ int main() {
 
     }
 
-    double pixelReal, pixelImaginary;
-    std::complex<double> oldZ, newZ;
-    std::complex<double> c;
+    long double pixelReal, pixelImaginary;
+    std::complex<long double> oldZ, newZ;
+    std::complex<long double> c;
     int i;
 
     #pragma omp for ordered schedule(dynamic) collapse(2)
@@ -39,8 +39,8 @@ int main() {
 
 	pixelReal = 1.5 * (x - (WINDOW_WIDTH / 2)) / (0.5 * WINDOW_WIDTH);
 	pixelImaginary = (y - (WINDOW_HEIGHT / 2)) / (0.5 * WINDOW_HEIGHT);
-	newZ = std::complex<double>(0, 0);
-	c = std::complex<double>(pixelReal, pixelImaginary);
+	newZ = std::complex<long double>(0, 0);
+	c = std::complex<long double>(pixelReal, pixelImaginary);
 
 	#pragma omp ordered
 	for (i = 0; i < MAX_ITER; i++) {
