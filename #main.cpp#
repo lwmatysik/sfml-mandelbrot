@@ -22,7 +22,7 @@ int main() {
   if (!font.loadFromFile("res/Munro.ttf")) {
     return 1;
   }
-
+  
   window.setFramerateLimit(60);
   window.clear(sf::Color::Black);
   text.setFont(font);

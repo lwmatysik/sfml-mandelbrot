@@ -2,7 +2,8 @@ SYS := $(shell gcc -dumpmachine)
 
 all: sfml-mandelbrot
 
-clean: rm *o sfml-mandelbrot
+clean:
+	rm *o sfml-mandelbrot
 
 ifneq (, $(findstring linux, $(SYS)))
 sfml-mandelbrot: main.o
