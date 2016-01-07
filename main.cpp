@@ -2,14 +2,14 @@
 #include <complex>
 #include <sstream>
 
-const int WINDOW_HEIGHT = 800;
-const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 1000;
+const int WINDOW_WIDTH = 1000;
 const int MAX_ITER = 100;
 
-const int AMOUNT_RED = 23;
-const int AMOUNT_GREEN = 88;
-const int AMOUNT_BLUE = 157;
-const int SHIFT = 0x9292F0;
+const uint8_t AMOUNT_RED = 33;
+const uint8_t AMOUNT_GREEN = 78;
+const uint8_t AMOUNT_BLUE = 220;
+const uint8_t SHIFT = 0b00000110;
 
 int main() {
 
@@ -22,7 +22,7 @@ int main() {
   if (!font.loadFromFile("res/Munro.ttf")) {
     return 1;
   }
-
+  
   window.setFramerateLimit(60);
   window.clear(sf::Color::Black);
   text.setFont(font);
@@ -43,7 +43,7 @@ int main() {
       pixelImaginary = (y - (WINDOW_HEIGHT / 2)) / (0.5 * WINDOW_HEIGHT);
       newZ = std::complex<long double>(0, 0);
       c = std::complex<long double>(pixelReal, pixelImaginary);
-
+      
       int i;
 
 #pragma omp ordered
@@ -55,7 +55,7 @@ int main() {
 	}
       }
 
-      int magnitude = i / 13;
+      int magnitude = i / 8;
       
       vertex.position = sf::Vector2f(x, y);
 
