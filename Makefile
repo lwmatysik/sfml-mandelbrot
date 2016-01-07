@@ -2,8 +2,7 @@ SYS := $(shell gcc -dumpmachine)
 
 all: sfml-mandelbrot
 
-clean:
-	rm *o sfml-mandelbrot
+clean: rm *o sfml-mandelbrot
 
 ifneq (, $(findstring linux, $(SYS)))
 sfml-mandelbrot: main.o
@@ -20,4 +19,3 @@ sfml-mandelbrot: main.o
 main.o: main.cpp
 	g++ -std=c++11 -c main.cpp -I/usr/local/include
 endif
-
