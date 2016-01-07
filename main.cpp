@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <complex>
-#include <iostream>
+#include <sstream>
 
 const int WINDOW_HEIGHT = 800;
 const int WINDOW_WIDTH = 800;
@@ -17,6 +17,14 @@ int main() {
   if (!font.loadFromFile("res/Munro.ttf")) {
     return 1;
   }
+
+  window.setFramerateLimit(60);
+  window.clear(sf::Color::Black);
+  text.setFont(font);
+  text.setString("Genterating Mandelbrot Set (Max iterations: " + std::to_string(MAX_ITER) + ")...");
+  text.setCharacterSize(24);
+  window.draw(text);
+  window.display();
   
   long double pixelReal, pixelImaginary;
   std::complex<long double> oldZ, newZ;
@@ -41,13 +49,22 @@ int main() {
 	  break;
 	}
       }
-	
+
+      int amountRed = 23;
+      int amountGreen = 88;
+      int amountBlue = 157;
+      int shift = 0x9090F1;
+      int magnitude = i / 13;
+      
       vertex.position = sf::Vector2f(x, y);
 
       if (i == MAX_ITER) {
-	vertex.color = sf::Color::Green;
-      } else {
 	vertex.color = sf::Color::Black;
+      } else {
+	vertex.color = sf::Color(amountRed | (shift << magnitude),
+				 amountGreen | (shift << magnitude),
+				 amountBlue | (shift << magnitude),
+				 255);
       }
 	
       vertexArray.append(vertex);
@@ -68,7 +85,7 @@ int main() {
 
     }
 
-    text.setFont(font);
+    window.clear(sf::Color::Black);
     text.setString("Here are your mandelbrots bro.");
     text.setCharacterSize(24);
     text.setColor(sf::Color::Red);
