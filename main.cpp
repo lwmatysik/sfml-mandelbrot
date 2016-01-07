@@ -6,6 +6,11 @@ const int WINDOW_HEIGHT = 800;
 const int WINDOW_WIDTH = 800;
 const int MAX_ITER = 100;
 
+const int AMOUNT_RED = 23;
+const int AMOUNT_GREEN = 88;
+const int AMOUNT_BLUE = 157;
+const int SHIFT = 0x9292F0;
+
 int main() {
 
   sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Mandelbrot Fractal Example");
@@ -50,10 +55,6 @@ int main() {
 	}
       }
 
-      int amountRed = 23;
-      int amountGreen = 88;
-      int amountBlue = 157;
-      int shift = 0x9090F1;
       int magnitude = i / 13;
       
       vertex.position = sf::Vector2f(x, y);
@@ -61,9 +62,9 @@ int main() {
       if (i == MAX_ITER) {
 	vertex.color = sf::Color::Black;
       } else {
-	vertex.color = sf::Color(amountRed | (shift << magnitude),
-				 amountGreen | (shift << magnitude),
-				 amountBlue | (shift << magnitude),
+	vertex.color = sf::Color(AMOUNT_RED | (SHIFT << magnitude),
+				 AMOUNT_GREEN | (SHIFT << magnitude),
+				 AMOUNT_BLUE | (SHIFT << magnitude),
 				 255);
       }
 	
@@ -75,26 +76,26 @@ int main() {
  
     while (window.isOpen()) {
 
-    sf::Event event;
+      sf::Event event;
     
-    while (window.pollEvent(event)) {
+      while (window.pollEvent(event)) {
 
-      if (event.type == sf::Event::Closed) {
-	window.close();
+	if (event.type == sf::Event::Closed) {
+	  window.close();
+	}
+
       }
 
-    }
+      window.clear(sf::Color::Black);
+      text.setString("Here are your mandelbrots bro.");
+      text.setCharacterSize(24);
+      text.setColor(sf::Color::Red);
 
-    window.clear(sf::Color::Black);
-    text.setString("Here are your mandelbrots bro.");
-    text.setCharacterSize(24);
-    text.setColor(sf::Color::Red);
-
-    window.draw(vertexArray);
-    window.draw(text);
-    window.display();
+      window.draw(vertexArray);
+      window.draw(text);
+      window.display();
     
-  }
-
+    }
+    
     return 0;
 }
