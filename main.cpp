@@ -9,7 +9,7 @@ const int MAX_ITER = 100;
 const uint8_t AMOUNT_RED = 33;
 const uint8_t AMOUNT_GREEN = 78;
 const uint8_t AMOUNT_BLUE = 220;
-const uint8_t SHIFT = 0b00000110;
+const uint8_t SHIFT = 0b00000111;
 
 int main() {
 
@@ -28,7 +28,7 @@ int main() {
   window.display();
   
   long double pixelReal, pixelImaginary;
-  std::complex<long double> oldZ, newZ;
+  std::complex<long double> tempZ, z;
   std::complex<long double> c;
 
 #pragma omp for ordered schedule(dynamic) collapse(2)
@@ -37,16 +37,16 @@ int main() {
 
       pixelReal = 1.5 * (x - (WINDOW_WIDTH / 2)) / (0.5 * WINDOW_WIDTH);
       pixelImaginary = (y - (WINDOW_HEIGHT / 2)) / (0.5 * WINDOW_HEIGHT);
-      newZ = std::complex<long double>(0, 0);
+      z = std::complex<long double>(0, 0);
       c = std::complex<long double>(pixelReal, pixelImaginary);
       
       int i;
 
 #pragma omp ordered
       for (i = 0; i < MAX_ITER; i++) {
-	oldZ = newZ;
-	newZ = oldZ * oldZ + c;
-	if ((newZ.real() * newZ.real() + newZ.imag() * newZ.imag()) > 4) {
+	tempZ = z;
+	z = tempZ * tempZ + c;
+	if ((z.real() * z.real() + z.imag() * z.imag()) > 4) {
 	  break;
 	}
       }
