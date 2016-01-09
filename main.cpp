@@ -2,8 +2,8 @@
 #include <complex>
 #include <sstream>
 
-const int WINDOW_HEIGHT = 1000;
-const int WINDOW_WIDTH = 1000;
+const int WINDOW_HEIGHT = 800;
+const int WINDOW_WIDTH = 800;
 const int MAX_ITER = 100;
 
 const uint8_t AMOUNT_RED = 33;
@@ -25,10 +25,6 @@ int main() {
   
   window.setFramerateLimit(60);
   window.clear(sf::Color::Black);
-  text.setFont(font);
-  text.setString("Genterating Mandelbrot Set (Max iterations: " + std::to_string(MAX_ITER) + ")...");
-  text.setCharacterSize(24);
-  window.draw(text);
   window.display();
   
   long double pixelReal, pixelImaginary;
@@ -87,9 +83,10 @@ int main() {
     }
 
     window.clear(sf::Color::Black);
-    text.setString("Here are your mandelbrots bro.");
+    text.setString("Max Iteration = " + std::to_string(MAX_ITER));
+    text.setFont(font);
     text.setCharacterSize(24);
-    text.setColor(sf::Color::Red);
+    text.setColor(sf::Color::White);
 
     window.draw(vertexArray);
     window.draw(text);
