@@ -11,6 +11,7 @@ For practice of course!
 * zoom functionality
 * window resize functionality
 * keyboard setting for max iterations
+* keyboard screenshot hotkey
 
 to build:
 	
